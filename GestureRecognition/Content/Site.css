@@ -22,3 +22,31 @@ select,
 textarea {
     max-width: 280px;
 }
+body {
+   
+}
+
+.heading-text {
+    padding: 30px;
+    color: lightseagreen;
+}
+
+.p-20 {
+    padding: 20px;
+}
+
+.p-t-20 {
+    padding-top: 20px;
+}
+
+.image-area {
+    border: 2px solid #888;
+}
+
+    .image-area:hover {
+        border: 2px solid #0089cc;
+        border-radius: 5px;
+        cursor: pointer;
+        z-index: 100;
+    }
+

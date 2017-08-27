@@ -32,6 +32,11 @@
                 <div class="modal-footer">
                     <h4 class="text-left" id="modal_date"></h4>
                     <h4 class="text-left" id="modal_location"></h4>
+                    <div class="fb-like"
+                         data-share="true"
+                         data-width="450"
+                         data-show-faces="true">
+                    </div>
                 </div>
             </div>
         </div>
@@ -49,3 +54,21 @@
             $('#modal_image').attr('src', image);
         })
     </script>
+<script>
+    window.fbAsyncInit = function () {
+        FB.init({
+            appId: '400074140394751',
+            xfbml: true,
+            version: 'v2.10'
+        });
+        FB.AppEvents.logPageView();
+    };
+
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) { return; }
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>

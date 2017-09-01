@@ -1,14 +1,20 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
-<div class="container">
-    <h2 class="text" data-bind="text: takeAPhoto"></h2>
-    <p class="timer" data-bind="text: timer"></p>
-    <div class="videoContainer">
-        <video id="video"></video>
+<div class="row">
+    @*<h2 class="text" data-bind="text: takeAPhoto"></h2>*@
+    @*<p class="timer" data-bind="text: timer"></p>*@
+    <div class="col-xs-12">
+        <div class="video-container row">
+            <video id="video" class="col-xs-8 p-0"></video>
+            <div class="desc-area col-xs-4 text-center">
+                <h1>Wave your hand to start countdown...</h1>
+                <h1 class="timer" data-bind="text: timer"></h1>
+            </div>
+        </div>
     </div>
-    <br>
-    <h2 class="text editText" data-bind="text: editText"></h2>
-    <br>
-    <canvas id="canvas" style="width:800px; height: 600px;"></canvas>
+    <div class="col-xs-12 text-center">
+        <h2 data-bind="text: editText"></h2>
+        <canvas id="canvas" style="width:800px; height: 600px;"></canvas>
+    </div>
 </div>

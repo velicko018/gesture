@@ -6,15 +6,19 @@
     @*<p class="timer" data-bind="text: timer"></p>*@
     <div class="col-xs-12">
         <div class="video-container row">
-            <video id="video" class="col-xs-8 p-0"></video>
+            <div  class="col-xs-8 p-0">
+                <video id="video"></video>
+            </div>
             <div class="desc-area col-xs-4 text-center">
-                <h1>Wave your hand to start countdown...</h1>
-                <h1 class="timer" data-bind="text: timer"></h1>
+                <h1 class="font-60 font-family-lato">Wave your hand to start countdown...</h1>
+                <h1 class="timer font-family-lato" data-bind="text: timer"></h1>
             </div>
         </div>
     </div>
     <div class="col-xs-12 text-center">
-        <h2 data-bind="text: editText"></h2>
-        <canvas id="canvas" style="width:800px; height: 600px;"></canvas>
+        <canvas id="canvas"></canvas>
+        <div id="download_link_area">
+            download link - www.gesture-selfie.com/gallery
+        </div>
     </div>
 </div>

@@ -1,5 +1,10 @@
 ﻿body {
     padding-bottom: 20px;
+    font-family: 'Lato', sans-serif;
+}
+
+.font-family-lato {
+    font-family: 'Lato', sans-serif;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -52,10 +57,10 @@ body {
     z-index: 100;
 }
 
-.video-container > video {
-    height: 100vh !important;
-    width: auto;
-    float: left;
+.video-container video {
+    /*height: 100vh !important;*/
+    height: auto;
+    width: 100%;
 }
 
 .desc-area {
@@ -65,6 +70,28 @@ body {
 }
 
 .timer {
-    font-size: 18vh;
-    margin-top: 20vh;
+    font-size: 30vh;
+    margin-top: 10vh;
+}
+
+.font-60 {
+    font-size: 60px;
+}
+
+#canvas {
+   height: 100vh !important;
+   width: auto;
+   max-width: 100%;
+}
+
+#download_link_area {
+    width: 98%;
+    position: absolute;
+    bottom: 2%;
+    z-index: 1000;
+    font-size: 9vh;
+    color: white;
+    background-color: rgba(0,0,0,0.7);
+    font-family: 'Lato', sans-serif;
+    text-align: center;
 }

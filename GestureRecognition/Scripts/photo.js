@@ -106,7 +106,7 @@
                 });
 
                 $('html, body').animate({
-                    scrollTop: $("#canvas").offset().top
+                    scrollTop: $("#image").offset().top
                 }, 2000);
 
 

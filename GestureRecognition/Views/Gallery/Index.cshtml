@@ -1,8 +1,7 @@
 ﻿@model GestureRecognition.Models.GalleryViewModel
 @using GestureRecognition.Models;
 
-    <div class="container">
-        <div class="row">
+    <div class="col-xs-12">
             <h1 class="text-center text-uppercase heading-text">Gesture Selfie</h1>
 
             @foreach (var photo in Model.Photos)
@@ -16,8 +15,6 @@
                     </div>
                 </div>
             }
-
-        </div>
     </div>
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog modal-lg" role="document">

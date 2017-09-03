@@ -95,18 +95,30 @@ body {
 }
 
 #download_link_area {
-    width:97.5%;
+    padding-left: 10px;
+    padding-right: 10px;
     position: absolute;
     z-index: 1000;
-    font-size: 7vh;
+    font-size: 5vh;
     color: white;
     bottom: 0;
     background-color: rgba(0,0,0,0.65);
     font-family: 'Lato', sans-serif;
-    text-align: center;
+    text-align: left;
 }
-.cheese
-{
+
+#preview_area {
+    min-height: 30vh !important;
+}
+
+
+#image {
+    max-height: 100vh;
+    width: auto;
+
+}
+
+.cheese {
     font-size: 16vh;
 }
 

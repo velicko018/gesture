@@ -79,8 +79,8 @@ body {
 }
 
 #canvas {
-   height: 100vh !important;
-   width: auto;
+   height: 0px !important;
+   width: 0px;
    max-width: 100%;
 }
 
@@ -94,4 +94,8 @@ body {
     background-color: rgba(0,0,0,0.7);
     font-family: 'Lato', sans-serif;
     text-align: center;
+}
+.cheese
+{
+    font-size: 16vh;
 }

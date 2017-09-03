@@ -12,7 +12,6 @@ namespace GestureRecognition.Controllers
 {
     public class GalleryController : Controller
     {
-        private static Photo LastProcessedImage = new Photo();
         private static string saveFolderUrl = "Photos\\";
         // GET: Gallery
         public ActionResult Index()
@@ -45,39 +44,16 @@ namespace GestureRecognition.Controllers
                 using (var ms = new MemoryStream(imageBytes, 0, imageBytes.Length))
                 {
                     Image image = Image.FromStream(ms, true);
-                    LastProcessedImage = new Photo()
-                    {
-                        Image = ImageProcessing.ProcessImage(new Bitmap(image)),
-                        Date = DateTime.Now
-                    };
-                    return Json(ImageToBase64(LastProcessedImage.Image, System.Drawing.Imaging.ImageFormat.Png), JsonRequestBehavior.AllowGet);
+                    image = Services.ImageProcessing.ProcessImage(new Bitmap(image));
+                    var src = System.AppDomain.CurrentDomain.BaseDirectory + saveFolderUrl + "photo-" + Guid.NewGuid() + ".png";
+                    image.Save(src);
+                    return Json(src.Substring(src.IndexOf("\\Photos")), JsonRequestBehavior.AllowGet);
                 }
             }
             catch(Exception)
             {
                 return Json("Error occured while reading image string", JsonRequestBehavior.AllowGet);
             }
-        }
-
-        [HttpPost]
-        public ActionResult Save()
-        {
-            try
-            {
-                if(LastProcessedImage != null)
-                {
-                    LastProcessedImage.Image.Save(System.AppDomain.CurrentDomain.BaseDirectory + saveFolderUrl + "photo-" + Guid.NewGuid() + ".png");
-
-                    return Json("image is saved.", JsonRequestBehavior.AllowGet);
-                }
-            }
-            catch(Exception e)
-            {
-                var message = e.Message;
-                return Json(message, JsonRequestBehavior.AllowGet);
-            }
-
-            return Json("image is not saved.", JsonRequestBehavior.AllowGet);
         }
 
         public string ImageToBase64(Image image, System.Drawing.Imaging.ImageFormat format)

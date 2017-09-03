@@ -24,9 +24,10 @@
                 </div>
                 <div class="modal-footer">
                     <div class="col-sm-6 col-xs-12">
+                        <h4 class="text-left" id="modal_date"></h4>
                         <h4 class="text-left" id="modal_location"></h4>
                     </div>
-                    <div class="col-sm-6 col-xs-12">
+                    <div class="col-sm-6 col-xs-12 p-t-10">
                         <div class="fb-like"
                              data-share="true"
                              data-width="450"
@@ -41,8 +42,11 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" crossorigin="anonymous"></script>
     <script>
         $('.image-area').click(function () {
-            var content = $(this).children('.location').first().text().split('Location:');
-            console.log(content[1]);
+            var content = $(this).children('.date').first().text().split('Date:');
+            $('#modal_date').text('');
+            $('#modal_date').append('<strong>Date: </strong>' + content[1]);
+
+            content = $(this).children('.location').first().text().split('Location:');
             $('#modal_location').text('');
             $('#modal_location').append('<strong>Location: </strong>'+content[1]);
             var image = $(this).children('.row').first().children('img').first().attr('src');

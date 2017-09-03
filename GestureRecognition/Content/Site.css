@@ -1,6 +1,11 @@
 ﻿body {
     padding-bottom: 20px;
     font-family: 'Lato', sans-serif;
+    background: white; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(left top, white, #bbb); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(bottom right, white, #bbb); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(bottom right, white, #bbb); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to bottom right, white, #bbb); /* Standard syntax */
 }
 
 .font-family-lato {
@@ -55,15 +60,23 @@ body {
 }
 
 .image-area {
-    border: 2px solid #888;
+    border: 2px solid #aaa;
+    background-color: white;
+    transition: box-shadow 200ms;
 }
 
-.image-area:hover {
-    border: 2px solid #0089cc;
-    border-radius: 5px;
-    cursor: pointer;
-    z-index: 100;
-}
+
+
+    .image-area:hover {
+        /*border: 2px solid #0089cc;*/
+        border: 2px solid white;
+        border-radius: 5px;
+        cursor: pointer;
+        z-index: 100;
+        /*background-color: rgba(0, 137, 204, 0.4);*/
+        box-shadow: 10px 10px 5px #888888;
+    }
+
 
 .video-container video {
     /*height: 100vh !important;*/

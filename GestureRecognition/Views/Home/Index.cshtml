@@ -1,6 +1,7 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
+
 <div class="row">
     @*<h2 class="text" data-bind="text: takeAPhoto"></h2>*@
     @*<p class="timer" data-bind="text: timer"></p>*@
@@ -11,8 +12,8 @@
             </div>
             <div class="desc-area col-xs-4 text-center">
                 <h1 class="font-60 font-family-lato">Wave your hand to start countdown...</h1>
-                <h1 class="timer font-family-lato" data-bind="text: timer"></h1>
-                <h1 class="cheese font-family-lato" data-bind="text: cheese"></h1>
+                <h1 class="timer font-family-lato" data-bind="text: ViewModel.timer"></h1>
+                <h1 class="cheese font-family-lato" data-bind="text: ViewModel.cheese"></h1>
             </div>
         </div>
     </div>
@@ -24,3 +25,11 @@
         <img id="image"/>
     </div>
 </div>
+<script type="text/javascript" src="~/Scripts/Models/photo.js"></script>
+<script type="text/javascript">
+    var Gesture = Gesture || {};
+    Gesture.VM = Gesture.VM || {};
+    $.extend(Gesture.VM, {
+        ViewModel: new ViewModel()
+    });
+</script>

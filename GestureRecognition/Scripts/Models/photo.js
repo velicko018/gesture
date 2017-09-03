@@ -1,4 +1,3 @@
-(function () {
 
     var canvas = document.getElementById('canvas');
     var context = canvas.getContext('2d');
@@ -20,7 +19,7 @@
 
     });
 
-    var ViewModel = function () {
+     function ViewModel() {
         var self = this;
 
         self.takeAPhoto = ko.observable("Shake hands to take a photo!");
@@ -123,6 +122,3 @@
             }, 6000);
         };
     };
-    ko.applyBindings(new ViewModel());
-
-})();

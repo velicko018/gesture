@@ -1,0 +1,1 @@
+[{"ImagePath":"E:\\gesture\\GestureRecognition\\Photos\\photo-7a286b40-2813-4856-92cd-2f689e7e34a8.png","Date":"Sunday, September 3, 2017","Location":"Tvrdjava Nis"}]

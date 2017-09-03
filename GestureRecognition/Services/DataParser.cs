@@ -17,20 +17,25 @@ namespace GestureRecognition.Services
         {
             using (StreamReader sr = new StreamReader(File))
             {
-                var text = sr.ReadToEnd();
-                if (string.IsNullOrEmpty(text))
-                    return "";
                 try
                 {
+
+                    var text = sr.ReadToEnd();
+                    if (string.IsNullOrEmpty(text))
+                        return "";
+
                     Photos = new JavaScriptSerializer().Deserialize<List<Photo>>(text);
+
+                    return text;
                 }
-                catch (Exception) { }
-                return text;
+                catch (Exception e) { return ""; }
             }
 
         }
         private void SaveFile()
         {
+
+            LoadFile();
             using (StreamWriter sw = new StreamWriter(File))
             {
                 var text = new JavaScriptSerializer().Serialize(Photos);

@@ -7,19 +7,26 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-</head>
-<body>
-    <div class="col-xs-12">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/gesture")
+</head>
+<body>
+    <div class="col-xs-12 temp-ko">
+        @RenderBody()
+        <hr />
+    </div>
+
     @RenderSection("scripts", required: false)
+
+    <script type="text/javascript">
+        console.log(Gesture.VM);
+        var Gesture = Gesture || {};
+        Gesture.VM = Gesture.VM || {};
+
+        //Apply bindings to main child div of body, this is work around jquery-dialog moving when initialized, resulting in KO trying to bind to it multiple times
+        ko.applyBindings(Gesture.VM, document.getElementsByClassName('temp-ko')[0]);
+    </script>
 </body>
 </html>

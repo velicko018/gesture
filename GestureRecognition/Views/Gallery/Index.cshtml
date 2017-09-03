@@ -1,21 +1,17 @@
-﻿@model GestureRecognition.Models.GalleryViewModel
-@using GestureRecognition.Models;
+﻿
+<script type="text/javascript" src="~/Scripts/Models/gallery.js"></script>    
+<div class="col-xs-12">
+            <h1 class="text-center text-uppercase heading-text" data-bind="text: Gallery.title"></h1>
 
-    <div class="col-xs-12">
-            <h1 class="text-center text-uppercase heading-text">Gesture Selfie</h1>
-
-            @foreach (var photo in Model.Photos)
-            {
-                <div class="col-md-4 col-sm-6 col-xs-12 m-b-10">
+                <div class="col-md-4 col-sm-6 col-xs-12 m-b-10" data-bind="foreach: Gallery.Photos">
                     <div class="col-xs-12 image-area" data-toggle="modal" data-target="#myModal">
                         <div class="row text-center">
-                            <img src="@photo.ImagePath" width="100%" height="auto"/>
+                            <img data-bind="attr: { 'src' : ImagePath }" width="100%" height="auto"/>
                         </div>
-                        <h4 class="p-t-10 date"><strong>Date: </strong>@photo.Date</h4>
-                        <h4 class="p-t-10 location"><strong>Location: </strong>@photo.Location</h4>
+                        <h4 class="p-t-10 date" data-bind="text: Date"><strong>Date: </strong></h4>
+                        <h4 class="p-t-10 location" data-bind="text: Location"><strong>Location: </strong></h4>
                     </div>
                 </div>
-            }
     </div>
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog modal-lg" role="document">
@@ -70,4 +66,11 @@
         js.src = "//connect.facebook.net/en_US/sdk.js";
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
+</script>
+<script type="text/javascript">
+    var Gesture = Gesture || {};
+    Gesture.VM = Gesture.VM || {};
+    $.extend(Gesture.VM, {
+        Gallery: new Gallery()
+    });
 </script>

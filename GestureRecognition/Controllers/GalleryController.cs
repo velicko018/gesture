@@ -21,23 +21,36 @@ namespace GestureRecognition.Controllers
 
         // GET: Gallery
         public ActionResult Index()
+        { 
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult LazyLoad(int startIndex, int endIndex)
         {
-            var model = new GalleryViewModel();
             var photos = Directory.GetFiles(System.AppDomain.CurrentDomain.BaseDirectory + saveFolderUrl, "*.png*", SearchOption.AllDirectories)
-                .ToList();
-            foreach(string photoPath in photos)
+                                        .ToList();
+            if (startIndex >= photos.Count)
+                return Json("No more photos", JsonRequestBehavior.AllowGet);
+            if (endIndex >= photos.Count)
+                endIndex = photos.Count - 1;
+
+            List<Photo> ret = new List<Photo>();
+
+            for(int i = startIndex; i < endIndex; i++)
             {
-                //mora se napravi baza ako ocete datum i lokaciju
-                var photoData = dataParser.Get(photoPath);
-                model.Photos.Add(new Photo()
+                var photoData = dataParser.Get(photos[i]);
+
+                ret.Add(new Photo()
                 {
-                    ImagePath = photoPath.Substring(photoPath.IndexOf("\\Photos")), //path treba se napravi da bude relativnu u odnosu na server
-                    Date = photoData.Date,
-                    Location = photoData.Location
+                    ImagePath = photos[i].Substring(photos[i].IndexOf("\\Photos")), //path treba se napravi da bude relativnu u odnosu na server
+                    Date = photoData?.Date ?? DateTime.Now.ToLongDateString(),
+                    Location = photoData?.Location ?? "Nis Fortress"
                 });
             }
-            return View(model);
+            return Json(ret, JsonRequestBehavior.AllowGet);
         }
+
         [HttpPost]
         public ActionResult Upload(string imageString)
         {

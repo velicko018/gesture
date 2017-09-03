@@ -33,7 +33,9 @@ namespace GestureRecognition.Controllers
             if (startIndex >= photos.Count)
                 return Json("No more photos", JsonRequestBehavior.AllowGet);
             if (endIndex >= photos.Count)
-                endIndex = photos.Count - 1;
+            {
+                endIndex = photos.Count;
+            }
 
             List<Photo> ret = new List<Photo>();
 

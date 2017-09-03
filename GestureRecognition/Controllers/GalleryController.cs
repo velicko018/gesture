@@ -13,6 +13,12 @@ namespace GestureRecognition.Controllers
     public class GalleryController : Controller
     {
         private static string saveFolderUrl = "Photos\\";
+        private static DataParser dataParser = new DataParser()
+        {
+            File = System.AppDomain.CurrentDomain.BaseDirectory + "data.txt",
+            Photos = new List<Photo>()
+        };
+
         // GET: Gallery
         public ActionResult Index()
         {
@@ -22,11 +28,12 @@ namespace GestureRecognition.Controllers
             foreach(string photoPath in photos)
             {
                 //mora se napravi baza ako ocete datum i lokaciju
+                var photoData = dataParser.Get(photoPath);
                 model.Photos.Add(new Photo()
                 {
                     ImagePath = photoPath.Substring(photoPath.IndexOf("\\Photos")), //path treba se napravi da bude relativnu u odnosu na server
-                    Date = DateTime.Now,
-                    Location = "Nis kod radomira"
+                    Date = photoData.Date,
+                    Location = photoData.Location
                 });
             }
             return View(model);
@@ -47,6 +54,12 @@ namespace GestureRecognition.Controllers
                     image = Services.ImageProcessing.ProcessImage(new Bitmap(image));
                     var src = System.AppDomain.CurrentDomain.BaseDirectory + saveFolderUrl + "photo-" + Guid.NewGuid() + ".png";
                     image.Save(src);
+                    dataParser.Add(new Photo()
+                    {
+                        ImagePath = src,
+                        Location = "Tvrdjava Nis",
+                        Date = DateTime.Now.ToLongDateString()
+                    });
                     return Json(src.Substring(src.IndexOf("\\Photos")), JsonRequestBehavior.AllowGet);
                 }
             }

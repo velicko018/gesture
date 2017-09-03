@@ -6,11 +6,12 @@
 
             @foreach (var photo in Model.Photos)
             {
-                <div class="col-md-4 col-sm-6 col-xs-12 p-0">
+                <div class="col-md-4 col-sm-6 col-xs-12 m-b-10">
                     <div class="col-xs-12 image-area" data-toggle="modal" data-target="#myModal">
                         <div class="row text-center">
                             <img src="@photo.ImagePath" width="100%" height="auto"/>
                         </div>
+                        <h4 class="p-t-10 date"><strong>Date: </strong>@photo.Date</h4>
                         <h4 class="p-t-10 location"><strong>Location: </strong>@photo.Location</h4>
                     </div>
                 </div>

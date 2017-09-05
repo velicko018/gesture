@@ -1,4 +1,10 @@
 ﻿
+var Photo = function (path, date, location)
+{
+    this.ImagePath = path;
+    this.Location = location;
+    this.Date = date;
+}
     var Gallery = function ()
     {
         var self = this;
@@ -6,11 +12,13 @@
         self.title = ko.observable("Gesture Selfie");
 
         self.Photos = ko.observableArray([]);
-        console.log(self.Photos);
         self.startIndex = ko.observable(0);
-        self.endIndex = ko.observable(6);
+        self.endIndex = ko.observable(6);   
 
-
+        self.selectedPhoto = ko.observable();
+        self.selectPhoto = function (el) {
+            console.log(el);
+        }
         var nomore = false;
 
         var loadInProgress = false;
@@ -27,7 +35,6 @@
                         nomore = true;
                         return;
                     }
-                    console.log(data.length);
                     self.Photos(self.Photos().concat(data));
                 },
                 error: function (data) {

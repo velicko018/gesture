@@ -5,12 +5,12 @@
 <div class="col-xs-12" data-bind="foreach: Gallery.Photos">
 
     <div class="col-md-4 col-sm-6 col-xs-12 m-b-10">
-        <div class="col-xs-12 image-area" data-toggle="modal" data-target="#myModal">
+        <div class="col-xs-12 image-area" data-toggle="modal" data-target="#myModal" data-bind="click: function() { SelectImage($data) }">
             <div class="row text-center">
-                <img data-bind="attr: { 'src' : ImagePath }" width="100%" height="auto"/>
+                <img data-bind="attr: { 'src' : ImagePath }" width="100%" height="auto" />
             </div>
-            <h4 class="p-t-10 date" data-bind="text: Date"><strong>Date: </strong></h4>
-            <h4 class="p-t-10 location" data-bind="text: Location"><strong>Location: </strong></h4>
+            <strong>Date: </strong><h4 class="p-t-10 date" data-bind="text: Date"></h4>
+            <strong>Location: </strong><h4 class="p-t-10 location" data-bind="text: Location"></h4>
         </div>
     </div>
 </div>
@@ -21,7 +21,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 </div>
                 <div class="modal-body text-center">
-                    <img id="modal_image" src="" width="100%">
+                    <img id="modal_image" data-bind="attr: {'src' : ''}" width="100%">
                 </div>
                 <div class="modal-footer">
                     <div class="col-sm-6 col-xs-12">
@@ -42,17 +42,16 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" crossorigin="anonymous"></script>
     <script>
-        $('.image-area').click(function () {
+        function SelectImage(data) {
+            console.log(data);
             var content = $(this).children('.date').first().text().split('Date:');
             $('#modal_date').text('');
-            $('#modal_date').append('<strong>Date: </strong>' + content[1]);
-
-            content = $(this).children('.location').first().text().split('Location:');
+            $('#modal_date').append('<strong>Date: </strong>' + data.Date);
+            
             $('#modal_location').text('');
-            $('#modal_location').append('<strong>Location: </strong>'+content[1]);
-            var image = $(this).children('.row').first().children('img').first().attr('src');
-            $('#modal_image').attr('src', image);
-        })
+            $('#modal_location').append('<strong>Location: </strong>' + data.Location);
+            $('#modal_image').attr('src', data.ImagePath);
+        };
     </script>
 <script>
     window.fbAsyncInit = function () {
